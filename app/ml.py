@@ -333,6 +333,50 @@ async def get_population(city: City):
     return {"population": value[0]}
 
 
+##############
+# Begin my code 
+
+def get_user_city_job(job_input, city_input):
+    splitjob = job_input.split()
+    splitcity = city_input.split()
+    add_job_to_url = '+'.join(splitjob)
+    add_city_to_url = '+'.join(splitcity)
+    URL = 'https://www.indeed.com/jobs?q=' + add_job_to_url + '+%2450%2C000&l=' + add_city_to_url + '&start=10'
+    page = requests.get(URL)
+    soup = bs(page.text, 'html.parser')
+    jobs = []
+    for div in soup.find_all(name='div', attrs={'class':'row'}):
+        for a in div.find_all(name='a', attrs={'data-tn-element':'jobTitle'}):
+            jobs.append(a['title'])
+    return(jobs)
+
+
+@router.post("/api/jobs")
+async def get_jobs(job: str, city: str):
+    """Retrieve jobs for target city
+
+    Uses Beautiful Soup 
+
+    args:
+        
+        job: The Job type i.e. Nurse, Software Engineer, Chef etc.
+        
+        city: Your City that you're looking for jobs in.
+
+    returns:
+        List of the current job openings for that city, which is converted
+            by fastAPI to a json object.
+    """
+
+    list_of_jobs = get_user_city_job(job, city)
+
+    return {
+        'scraped_jobs': list_of_jobs
+        }
+# End my Code
+#############
+
+
 @router.post("/api/nearest", response_model=CityRecommendations)
 async def get_recommendations(city: City):
     """Retrieve recommended cities for target city
