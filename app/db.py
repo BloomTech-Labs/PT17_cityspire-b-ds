@@ -33,6 +33,26 @@ async def get_url():
     return {"database_url": url_without_password}
 
 
+@router.get("/all_cities")
+async def get_cities():
+    """
+    Get available cities from DB
+    """
+    data = Table("data")
+    
+    columns = (
+        data["City"].as_("City"),
+        data["State"].as_("State"),
+    )
+
+    q = (
+        Query.from_(data)
+        .select(*columns)
+    )
+    value = await database.fetch_all(str(q))
+    return value
+
+
 async def select(columns: Union[Iterable[Field_], Field_], city):
     data = Table("data")
     if type(columns) == str or type(columns) == Field:
