@@ -52,6 +52,7 @@ async def get_cities():
     value = await database.fetch_all(str(q))
     return value
 
+
 async def select(columns: Union[Iterable[Field_], Field_], city):
     data = Table("data")
     if type(columns) == str or type(columns) == Field:
