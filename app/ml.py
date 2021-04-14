@@ -9,7 +9,7 @@ from pathlib import Path
 import pandas as pd
 from pypika import Query, Table, CustomFunction
 import asyncio
-from app.db import database, select, select_all
+from app.db import database, select, select_all, select_weather_daily, select_weather_monthly
 from typing import List, Optional
 
 
@@ -387,3 +387,40 @@ async def get_recommendation_cities(city: City, nearest_string: str):
     )
 
     return recs
+
+
+@router.post("/api/weather_daily_forecast")
+async def get_daily_forecast(city: City):
+    """Retrieve weather forecast for target city
+
+    Fetch data from DB
+
+    args:
+        city: The target city
+
+    returns:
+        Dictionary that contains the requested data, which is converted
+        by fastAPI to a json object.
+    """
+    city = validate_city(city)
+    value = await select_weather_daily(city)
+
+    return value
+
+@router.post("/api/weather_monthly_forecast")
+async def get_daily_forecast(city: City):
+    """Retrieve weather forecast for target city
+
+    Fetch data from DB
+
+    args:
+        city: The target city
+
+    returns:
+        Dictionary that contains the requested data, which is converted
+        by fastAPI to a json object.
+    """
+    city = validate_city(city)
+    value = await select_weather_monthly(city)
+
+    return value
