@@ -391,7 +391,7 @@ async def get_recommendation_cities(city: City, nearest_string: str):
 
 @router.post("/api/weather_daily_forecast")
 async def get_daily_forecast(city: City):
-    """Retrieve weather forecast for target city
+    """Retrieve daily weather forecast for target city
 
     Fetch data from DB
 
@@ -408,8 +408,8 @@ async def get_daily_forecast(city: City):
     return value
 
 @router.post("/api/weather_monthly_forecast")
-async def get_daily_forecast(city: City):
-    """Retrieve weather forecast for target city
+async def get_monthly_forecast(city: City):
+    """Retrieve monthly weather forecast for target city
 
     Fetch data from DB
 
