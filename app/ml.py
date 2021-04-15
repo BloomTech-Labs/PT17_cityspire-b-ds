@@ -405,7 +405,7 @@ async def get_daily_forecast(city: City):
     city = validate_city(city)
     value = await select_weather_daily(city)
 
-    return value
+    return {'City': city.city, 'State': city.state, 'weather_temperature': value}
 
 @router.post("/api/weather_monthly_forecast")
 async def get_monthly_forecast(city: City):
@@ -422,5 +422,5 @@ async def get_monthly_forecast(city: City):
     """
     city = validate_city(city)
     value = await select_weather_monthly(city)
-
-    return value
+    
+    return {'City': city.city, 'State': city.state, 'weather_temperature': value}

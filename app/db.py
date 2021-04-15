@@ -132,7 +132,7 @@ async def select_weather_daily(city):
         .where(forecast.state == city.state)
     )
     value = await database.fetch_all(str(q))
-    return {'City': city.city, 'State': city.state, 'weather_temperature': value}
+    return value
 
 async def select_weather_monthly(city):
     """Fetch weather forecast per city
@@ -162,4 +162,4 @@ async def select_weather_monthly(city):
         .where(forecast.state == city.state)
     )
     value = await database.fetch_all(str(q))
-    return {'City': city.city, 'State': city.state, 'weather_temperature': value}
+    return value
