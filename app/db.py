@@ -33,6 +33,26 @@ async def get_url():
     return {"database_url": url_without_password}
 
 
+@router.get("/all_cities")
+async def get_cities():
+    """
+    Get available cities from DB
+    """
+    data = Table("data")
+    
+    columns = (
+        data["City"].as_("City"),
+        data["State"].as_("State"),
+    )
+
+    q = (
+        Query.from_(data)
+        .select(*columns)
+    )
+    value = await database.fetch_all(str(q))
+    return value
+
+
 async def select(columns: Union[Iterable[Field_], Field_], city):
     data = Table("data")
     if type(columns) == str or type(columns) == Field:
@@ -84,6 +104,7 @@ async def select_all(city):
     value = await database.fetch_one(str(q))
     return value
 
+  
 async def select_housing_price_averages(city):
     """Fetch housing price averages per city
     
@@ -116,8 +137,68 @@ async def select_housing_price_averages(city):
         .where(prices.City == city.city)
         .where(prices.State == city.state)
     )
-    
-    
     value = await database.fetch_one(str(q))
-
     return value
+
+
+async def select_weather_daily(city):
+    """Fetch weather forecast per city
+
+    Fetch data from DB
+
+    args:
+        city: selected city
+
+    returns:
+        Dictionary that contains the requested data, which is converted
+            by fastAPI to a json object.
+    """
+    forecast = Table("weather_daily_forecast")
+
+    columns = (
+        forecast["date"].as_("date"),
+        forecast["temperature_pred"].as_("average_temperature"),
+        forecast["temp_lower_pred"].as_("min_temperature"),
+        forecast["temp_upper_pred"].as_("max_temperature"),
+    )
+
+    q = (
+        Query.from_(forecast)
+        .select(*columns)
+        .where(forecast.city == city.city)
+        .where(forecast.state == city.state)
+    )
+    value = await database.fetch_all(str(q))
+    return value
+
+  
+async def select_weather_monthly(city):
+    """Fetch weather forecast per city
+
+    Fetch data from DB
+
+    args:
+        city: selected city
+
+    returns:
+        Dictionary that contains the requested data, which is converted
+            by fastAPI to a json object.
+    """
+    forecast = Table("weather_monthly_forecast")
+
+    columns = (
+        forecast["date"].as_("date"),
+        forecast["temperature_pred"].as_("average_temperature"),
+        forecast["temp_lower_pred"].as_("min_temperature"),
+        forecast["temp_upper_pred"].as_("max_temperature"),
+    )
+
+    q = (
+        Query.from_(forecast)
+        .select(*columns)
+        .where(forecast.city == city.city)
+        .where(forecast.state == city.state)
+    )
+    value = await database.fetch_all(str(q))
+    return value
+    
