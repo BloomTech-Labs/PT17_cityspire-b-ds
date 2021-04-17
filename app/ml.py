@@ -9,7 +9,7 @@ from pathlib import Path
 import pandas as pd
 from pypika import Query, Table, CustomFunction
 import asyncio
-from app.db import database, select, select_all, select_weather_daily, select_weather_monthly
+from app.db import database, select, select_all, select_housing_price_averages, select_weather_daily, select_weather_monthly
 from typing import List, Optional
 
 
@@ -389,6 +389,31 @@ async def get_recommendation_cities(city: City, nearest_string: str):
     return recs
 
 
+@router.post("/api/housing_price_averages")
+async def get_housing_price_averages(city: City):
+    """Retrieve housing price averages per city
+    
+    The averages includes single family homes, condos, one bedroom,
+    two bedroom, three bedroom, four bedroom, and five and up bedroom averages.
+    
+    Fetch data from DB
+    
+    args:
+        city: selected city
+        
+    returns:
+        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+    """
+    city = validate_city(city)
+    value = await select_housing_price_averages(city)
+
+    
+    return {'City': city.city, 'State': city.state, 'single_family_housing_avg_price'
+            : value[0], 'condo_avg_price': value[1], '1_bedroom_avg_price': value[2], 
+            '2_bedroom_avg_price': value[3], '3_bedroom_avg_price': value[4], '4_bedroom_avg_price':
+           value[5], '5_and_up_bedroom_avg_price': value[6]}
+  
+
 @router.post("/api/weather_daily_forecast")
 async def get_daily_forecast(city: City):
     """Retrieve daily weather forecast for target city
@@ -407,6 +432,7 @@ async def get_daily_forecast(city: City):
 
     return {'City': city.city, 'State': city.state, 'weather_temperature': value}
 
+  
 @router.post("/api/weather_monthly_forecast")
 async def get_monthly_forecast(city: City):
     """Retrieve monthly weather forecast for target city

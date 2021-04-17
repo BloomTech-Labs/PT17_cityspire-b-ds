@@ -104,6 +104,43 @@ async def select_all(city):
     value = await database.fetch_one(str(q))
     return value
 
+  
+async def select_housing_price_averages(city):
+    """Fetch housing price averages per city
+    
+    The averages includes single family homes, condos, one bedroom,
+    two bedroom, three bedroom, four bedroom, and five and up bedroom averages.
+    
+    Fetch data from DB
+    
+    args:
+        city: selected city
+        
+    returns:
+        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+    """
+    prices = Table("data")
+    
+    columns = (
+        prices['SingleFamilyHousingAvgValue'].as_("single_family_housing_avg_price"),
+        prices['CondoAvgValue'].as_("condo_avg_price"),
+        prices['1-BedroomAvgValue'].as_("1_bedroom_avg_price"),
+        prices['2-BedroomAvgValue'].as_("2_bedroom_avg_price"),
+        prices['3-BedroomAvgValue'].as_("3_bedroom_avg_price"),
+        prices['4-BedroomAvgValue'].as_("4_bedroom_avg_price"),
+        prices['5+-BedroomAvgValue'].as_("5_and_up_bedroom_avg_price"),
+    )
+    
+    q = (
+        Query.from_(prices)
+        .select(*columns)
+        .where(prices.City == city.city)
+        .where(prices.State == city.state)
+    )
+    value = await database.fetch_one(str(q))
+    return value
+
+
 async def select_weather_daily(city):
     """Fetch weather forecast per city
 
@@ -134,6 +171,7 @@ async def select_weather_daily(city):
     value = await database.fetch_all(str(q))
     return value
 
+  
 async def select_weather_monthly(city):
     """Fetch weather forecast per city
 
@@ -163,3 +201,4 @@ async def select_weather_monthly(city):
     )
     value = await database.fetch_all(str(q))
     return value
+    
