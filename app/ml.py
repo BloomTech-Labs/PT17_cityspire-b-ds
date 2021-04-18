@@ -9,7 +9,7 @@ from pathlib import Path
 import pandas as pd
 from pypika import Query, Table, CustomFunction
 import asyncio
-from app.db import database, select, select_all, select_housing_price_averages, select_weather_daily, select_weather_monthly
+from app.db import database, select, select_all, select_housing_price_averages, select_weather_daily, select_weather_monthly, select_weather_conditions
 from typing import List, Optional
 
 
@@ -34,6 +34,10 @@ class CityDataBase(BaseModel):
     air_quality_index: str
     population: int
     diversity_index: float
+    sunny_days_avg_year: int
+    cloudy_days_avg_year: int
+    rainy_days_avg_year: int
+    snowy_days_avg_year: int
 
 
 class CityData(CityDataBase):
@@ -428,9 +432,9 @@ async def get_daily_forecast(city: City):
         by fastAPI to a json object.
     """
     city = validate_city(city)
-    value = await select_weather_daily(city)
+    weather_temp = await select_weather_monthly(city)
 
-    return {'City': city.city, 'State': city.state, 'weather_temperature': value}
+    return {'City': city.city, 'State': city.state, 'weather_temperature': weather_temp}
 
   
 @router.post("/api/weather_monthly_forecast")
@@ -447,6 +451,25 @@ async def get_monthly_forecast(city: City):
         by fastAPI to a json object.
     """
     city = validate_city(city)
-    value = await select_weather_monthly(city)
+    weather_temp = await select_weather_monthly(city)
     
-    return {'City': city.city, 'State': city.state, 'weather_temperature': value}
+    return {'City': city.city, 'State': city.state, 'weather_temperature': weather_temp}
+
+
+@router.post("/api/weather_conditions")
+async def get_weather_conditions(city: City):
+    """Retrieve weather conditions sunny/cloudy/rainy/snowy days for target city
+
+    Fetch data from DB
+
+    args:
+        city: The target city
+
+    returns:
+        Dictionary that contains the requested data, which is converted
+        by fastAPI to a json object.
+    """
+    city = validate_city(city)
+    weather_cond = await select_weather_conditions(city)
+    
+    return {'City': city.city, 'State': city.state, 'weather_conditions': weather_cond}

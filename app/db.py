@@ -85,6 +85,10 @@ async def select_all(city):
         # 'lat', 'lon'
         data["lat"].as_("latitude"),
         data["lon"].as_("longitude"),
+        data['SunnyDays_avgPerYear'].as_("sunny_days_avg_year"),
+        data['CloudyDays_avgPerYear'].as_("cloudy_days_avg_year"),
+        data['RainyDays_avgPerYear'].as_("rainy_days_avg_year"),
+        data['SnowyDays_avgPerYear'].as_("snowy_days_avg_year"),
         data["Crime Rating"].as_("crime"),
         data["Rent"].as_("rental_price"),
         data["Air Quality Index"].as_("air_quality_index"),
@@ -202,3 +206,31 @@ async def select_weather_monthly(city):
     value = await database.fetch_all(str(q))
     return value
     
+async def select_weather_conditions(city):
+    """Fetch weather conditions sunny/cloudy/rainy/snowy days per city
+    
+    Fetch data from DB
+    
+    args:
+        city: selected city
+        
+    returns:
+        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+    """
+    conditions = Table("data")
+    
+    columns = (
+        conditions['SunnyDays_avgPerYear'].as_("sunny_days_avg_year"),
+        conditions['CloudyDays_avgPerYear'].as_("cloudy_days_avg_year"),
+        conditions['RainyDays_avgPerYear'].as_("rainy_days_avg_year"),
+        conditions['SnowyDays_avgPerYear'].as_("snowy_days_avg_year"),
+    )
+    
+    q = (
+        Query.from_(conditions)
+        .select(*columns)
+        .where(conditions.City == city.city)
+        .where(conditions.State == city.state)
+    )
+    value = await database.fetch_one(str(q))
+    return value
