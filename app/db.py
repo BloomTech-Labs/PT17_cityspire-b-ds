@@ -185,7 +185,7 @@ async def select_weather_historical(city):
         .select(*columns)
         .where(historical.City == city.city)
         .where(historical.State == city.state)
-        .where(historical["Date time"] >= '2020-01-01')
+        # .where(historical["Date time"] >= '2020-01-01')
     )
     value = await database.fetch_all(str(q))
     return value
