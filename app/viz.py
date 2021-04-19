@@ -12,6 +12,9 @@ from app.state_abbr import us_state_abbrev as abbr
 router = APIRouter()
 
 MODEL_CSV = 'https://media.githubusercontent.com/media/CityScape-Datasets/Workspace_Datasets/main/Models/nn_model/nn_model.csv'
+WEATHER_HIST_CSV = 'https://raw.githubusercontent.com/Lambda-School-Labs/PT17_cityspire-b-ds/main/notebooks/model/weather/data/cleaned_data.csv'
+WETHER_FORECAST_CSV = 'https://raw.githubusercontent.com/Lambda-School-Labs/PT17_cityspire-b-ds/main/notebooks/model/weather/data/future_forecast.csv'
+
 
 class CityData():
     """
@@ -54,6 +57,23 @@ class CityData():
     def air_quality_index(self):
         self.air_quality_index = ['Days with AQI', 'Good Days', 'Moderate Days','Unhealthy for Sensitive Groups Days', 'Unhealthy Days','Very Unhealthy Days', 'Hazardous Days', 'Max AQI', '90th Percentile AQI', 'Median AQI', 'Days CO', 'Days NO2', 'Days Ozone', 'Days SO2', 'Days PM2.5', 'Days PM10']
         return self.air_quality_index
+
+class WeatherData():
+    def __init__(self, current_city):
+        self.current_city = current_city
+        self.historical = pd.read_csv(WEATHER_HIST_CSV)
+        self.forecast = pd.read_csv(WETHER_FORECAST_CSV)
+        self.subset_hist = self.historical[(self.historical['City'] == self.current_city.city) & (self.historical['State'] == self.current_city.state)]
+        self.subset_forec = self.forecast[(self.forecast['City'] == self.current_city.city) & (self.forecast['State'] == self.current_city.state)]
+    
+    def historical_temp(self):
+        self.historical_temp = ['Date time', 'Temperature (degF)']
+        return self.historical_temp
+    
+    def forecast_temp(self):
+        self.historical_temp = ['ds', 'yhat', 'yhat_lower', 'yhat_upper']
+        return self.historical_temp
+
 
 @router.post("/api/demographics_graph")
 async def demographics_plot(current_city:City):
@@ -213,3 +233,74 @@ async def air_quality_plot(current_city:City):
     fig.show()
     # fig.write_html("path/to/file.html")
     return fig.to_json()
+
+@router.post("/api/weather_forecast_graph")
+async def weather_forecast_plot(current_city:City):
+    """
+    Visualize weather temperature forecast for city
+
+    ### Query Parameters
+    - city
+
+    ### Response
+    JSON string to render with react-plotly.js
+    """
+    city = validate_city(current_city)
+    weather_data = WeatherData(city)
+    
+    # get data
+    hist = weather_data.subset_hist[weather_data.historical_temp()]
+    forec = weather_data.subset_forec[weather_data.forecast_temp()]
+
+    layout = go.Layout(
+        legend=dict(
+        x=0,
+        y=1.2,
+        traceorder='normal',
+        font=dict(size=12,),
+        ))
+    fig = go.Figure(layout=layout)
+    fig.add_trace(go.Scatter(x=hist['Date time'], y=hist['Temperature (degF)'],
+                    line=dict(width=1),
+                    mode='lines+markers',
+                    name='Historical temperature'))
+    fig.add_trace(go.Scatter(x=forec['ds'], y=forec['yhat'],
+                    line=dict(color='#FF8F34', width=3, dash='dash'),
+                    name='Predicted avg temperature'))
+    fig.add_trace(go.Scatter(x=forec['ds'], y=forec['yhat_lower'],
+                    line = dict(color='rgb(150,150,150)', width=2, dash='dot'),
+                    name='Predicted min temperature'))
+    fig.add_trace(go.Scatter(x=forec['ds'], y=forec['yhat_upper'],
+                    line = dict(color='rgb(150,150,150)', width=2, dash='dot'),
+                    name='Predicted max temperature'))
+    fig.update_layout(
+        autosize=False,
+        width=980,
+        height=600,
+        margin=dict(
+            l=10,
+            r=10,
+            b=10,
+            t=100,
+            pad=4
+        ),
+        yaxis=dict(
+            title_text="Temperature deg Fahrenheit",
+        ),
+        xaxis=dict(
+            title_text="Date",
+        ),
+        font=dict(
+            family="Courier New, monospace",
+            size=15,
+        ),
+        title={
+            'text': "Historical and Forecast temperature {}, {}".format(city.city, city.state),
+            'y':0.9,
+            'x':0.65,
+            'xanchor': 'center',
+            'yanchor': 'top'}
+    )
+    # fig.show()
+    
+    return forec.to_json()
