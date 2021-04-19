@@ -8,6 +8,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 from app.ml import City, validate_city
 from app.state_abbr import us_state_abbrev as abbr
+from app.db import select_weather_conditions
 
 router = APIRouter()
 
@@ -301,6 +302,45 @@ async def weather_forecast_plot(current_city:City):
             'xanchor': 'center',
             'yanchor': 'top'}
     )
-    # fig.show()
-    
-    return forec.to_json()
+    fig.show()    
+    return fig.to_json()
+
+@router.post("/api/weather_conditions_graph")
+async def weather_conditions_plot(current_city:City):
+    """
+    Visualize weather condirions for city
+
+    ### Query Parameters
+    - city
+
+    ### Response
+    JSON string to render with react-plotly.js
+    """
+    city = validate_city(current_city)
+    weather_conditions = await select_weather_conditions(city)
+    weather_dict = dict(weather_conditions)
+    df_conditions = pd.Series(weather_dict)
+    fig = go.Figure([go.Bar(x=['sunny', 'cloudy', 'rainy', 'snowy'], 
+        y=df_conditions[['sunny_days_avg_year', 'cloudy_days_avg_year', 'rainy_days_avg_year', 'snowy_days_avg_year']],
+        hovertext=['Sunny Days per year', 'Cloudy Days per year', 'Rainy Days per year', 'Snowy Days per year'])])
+
+    fig.update_layout(
+        autosize=False,
+        width=980,
+        height=600,
+        margin=dict(l=10, r=10, b=10, t=100, pad=4),
+        yaxis=dict(title_text="Number of Days Per Year"),
+        xaxis=dict(title_text="Weather Conditions"),
+        font=dict(family="Courier New, monospace", size=15),
+        title={
+            'text': "Annual Weather Conditions for {}, {}".format(city.city, city.state),
+            'y':0.9,
+            'x':0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'}
+    )
+    fig.update_traces(marker_color='rgb(177, 255, 8)', marker_line_color='rgb(97, 140, 3)',
+                marker_line_width=1.5, opacity=0.6)
+    fig.show()
+
+    return fig.to_json()
