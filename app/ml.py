@@ -450,3 +450,70 @@ async def get_monthly_forecast(city: City):
     value = await select_weather_monthly(city)
     
     return {'City': city.city, 'State': city.state, 'weather_temperature': value}
+
+##############
+# Begin my working scraper code (Andrew Rust)
+
+def get_user_city_job(job_input, city_input, state_input):
+    splitjob = job_input.split()
+    splitcity = city_input.split()
+    add_job_to_url = '+'.join(splitjob)
+    add_city_to_url = '+'.join(splitcity)
+    URL = 'https://www.indeed.com/jobs?q=' + add_job_to_url + '&l=' + add_city_to_url + '&2C' + state_input
+    page = requests.get(URL)
+    soup = bs(page.text, 'html.parser')
+    jobs = []
+    for div in soup.find_all(name='div', attrs={'class':'row'}):
+        for a in div.find_all(name='a', attrs={'data-tn-element':'jobTitle'}):
+            jobs.append(a['title'])
+    return(jobs)
+
+
+@router.post("/api/jobs")
+async def get_jobs(job: str, city: str, state: str):
+    """Retrieve jobs for target city
+    Uses Beautiful Soup 
+    args:
+        
+        job: The Job type i.e. Nurse, Software Engineer, Chef etc.
+        
+        city: Your City that you're looking for jobs in.
+
+        state: Your State capitalized 2 letter abbreviation code.
+    returns:
+        List of the current job openings for that city, which is converted
+            by fastAPI to a json object.
+    """
+
+    list_of_jobs = get_user_city_job(job, city, state)
+
+    return {
+        'scraped_jobs': list_of_jobs
+        }
+#############
+# Below was an attempt to access the db.
+# Problem 1 was the csv file got cut off and I didn't realize. 
+# Problem 2 was I couldn't get the list of jobs returned from the db it threw an error.
+# Settled on the scrapper from above
+#############
+
+# @router.post("/api/available_jobs")
+# async def get_available_jobs(city: City):
+#     """Retrieve random jobs per city
+    
+#     Fetch data from DB
+    
+#     args:
+#         city: selected city
+        
+#     returns:
+#         Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+#     """
+#     city = validate_city(city)
+#     value = await select_available_jobs(city)
+
+#     return {'random_avail_jobs': value}
+
+# End all my code (Andrew Rust)
+###############
+

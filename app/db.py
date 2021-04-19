@@ -202,3 +202,35 @@ async def select_weather_monthly(city):
     value = await database.fetch_all(str(q))
     return value
     
+#############
+# Begin My Code (Andrew Rust)
+# Below was an attempt to access the postgresql db.
+# Error in my code making the csv file.  I'll have to redo it.
+
+# async def select_available_jobs(city):
+#     """Fetch random jobs per city
+    
+#     Fetch data from DB
+    
+#     args:
+#         city: selected city
+        
+#     returns:
+#         Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+#     """
+#     jobs = Table('random_jobs')
+    
+#     columns = (
+#         jobs['Job'].as_('random_avail_jobs')
+#     )
+    
+#     q = (
+#         Query.from_(jobs)
+#         .select(*columns)
+#         .where(jobs.City == city.city)
+#     )
+#     value = await database.fetch_one(str(q))
+#     return value
+
+# End code (Andrew Rust)
+#############
