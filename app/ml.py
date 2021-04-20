@@ -492,7 +492,7 @@ async def get_weather_conditions(city: City):
     city = validate_city(city)
     weather_cond = await select_weather_conditions(city)
     
-    return {'City': city.city, 'State': city.state, 'weather_temperature': value}
+    return {'City': city.city, 'State': city.state, 'weather_conditions': weather_cond}
 
 ##############
 # Begin my working scraper code (Andrew Rust)
