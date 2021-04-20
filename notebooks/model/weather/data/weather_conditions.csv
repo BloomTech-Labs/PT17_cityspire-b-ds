@@ -1,0 +1,398 @@
+City,CloudyDays_avgPerYear,RainyDays_avgPerYear,SnowyDays_avgPerYear,State,SunnyDays_avgPerYear
+Akron,164,70,48,OH,83
+Albany,126,91,0,GA,148
+Albany,239,67,46,NY,13
+Albany,102,129,6,OR,129
+Albuquerque,242,44,1,NM,79
+Alexandria,122,101,0,LA,142
+Allentown,152,84,29,PA,100
+Altoona,139,100,50,PA,76
+Amarillo,68,58,12,TX,228
+Anacortes,225,71,8,WA,61
+Anaheim,162,27,0,CA,177
+Anchorage,210,19,73,AK,63
+Anderson,132,94,29,IN,111
+Ann Arbor,146,70,53,MI,96
+Appleton,119,82,63,WI,100
+Arlington,117,63,0,TX,185
+Arroyo Grande,151,35,0,CA,179
+Asheville,18,146,10,NC,191
+Ashland,73,150,16,KY,126
+Ashland,114,109,44,OH,98
+Athens,130,123,20,OH,92
+Atlantic City,130,95,12,NJ,128
+Auburn,130,78,53,ME,104
+Aurora,244,54,35,CO,33
+Austin,192,55,0,TX,118
+Bakersfield,62,34,1,CA,268
+Baltimore,228,90,15,MD,32
+Bangor,235,45,58,ME,27
+Baton Rouge,124,113,1,LA,128
+Bay City,134,80,62,MI,90
+Beaumont,148,106,0,TX,111
+Bellevue,224,56,6,WA,80
+Bellingham,182,68,14,WA,100
+Beloit,191,72,42,WI,60
+Bend,51,64,36,OR,215
+Benton Harbor,136,71,52,MI,106
+Billings,198,54,68,MT,45
+Biloxi,103,124,0,MS,139
+Bismarck,120,52,56,ND,137
+Blacksburg,145,114,13,VA,93
+Bloomington,129,84,34,IL,118
+Bossier City,125,84,1,LA,156
+Boston,241,72,25,MA,27
+Boulder,28,89,66,CO,182
+Bowling Green,119,96,5,KY,145
+Bradenton,78,129,0,FL,158
+Bremerton,186,86,7,WA,87
+Bridgeport,139,75,26,CT,125
+Bridgeton,126,100,16,NJ,124
+Bristol,178,109,10,TN,68
+Brookings,118,66,42,SD,140
+Brownsville,168,66,0,TX,131
+Bryan,173,72,0,TX,120
+Buffalo,192,91,55,NY,27
+Burlington,196,63,84,VT,22
+Cambridge,230,69,33,MA,33
+Canton,202,72,57,OH,34
+Cape Coral,79,152,0,FL,135
+Carlsbad,180,35,0,CA,150
+Carmel,149,85,24,IN,107
+Casper,56,49,82,WY,179
+Cedar Rapids,126,74,32,IA,134
+Chambersburg,146,92,26,PA,102
+Champaign,94,109,18,IL,144
+Chapel Hill,0,146,4,NC,216
+Charleston,122,112,0,SC,131
+Charlotte,226,79,2,NC,59
+Charlottesville,0,141,7,VA,216
+Cheyenne,60,52,91,WY,162
+Chicago,249,65,22,IL,28
+Chico,64,47,0,CA,254
+Christiansburg,150,110,13,VA,92
+Clearfield,95,46,58,UT,166
+Clearwater,88,144,0,FL,134
+Cleveland,154,72,56,OH,84
+Clinton,132,86,28,IA,120
+College Station,165,66,0,TX,134
+Colorado Springs,156,90,37,CO,83
+Columbia,111,79,22,MO,153
+Columbia,134,97,0,SC,135
+Columbus,145,96,15,IN,110
+Columbus,224,75,25,OH,41
+Concord,118,109,3,NC,135
+Conway,164,89,1,AR,111
+Conway,86,128,0,SC,152
+Corcoran,58,40,0,CA,267
+Corpus Christi,260,68,0,TX,37
+Council Bluffs,178,66,38,IA,83
+Crestview,100,129,0,FL,136
+Cumberland,128,118,48,MD,71
+Dallas,200,70,0,TX,96
+Dayton,188,85,23,OH,69
+Daytona Beach,218,108,0,FL,39
+Decatur,132,74,18,IL,141
+Denver,225,52,55,CO,33
+Des Moines,209,64,41,IA,51
+Detroit,114,121,38,MI,92
+Douglas,47,50,0,AZ,268
+Dover,137,114,3,DE,112
+Duluth,150,62,75,MN,78
+Durham,158,139,5,NC,64
+East Lansing,134,78,59,MI,94
+Eau Claire,137,62,62,WI,103
+Edinburg,162,76,0,TX,128
+Effingham,139,84,15,IL,127
+El Centro,31,12,0,CA,322
+El Paso,152,50,1,TX,162
+Elizabethtown,96,130,6,KY,133
+Elko,50,24,95,NV,196
+Elyria,151,81,45,OH,89
+Enid,114,89,2,OK,160
+Erie,130,79,70,PA,87
+Eugene,209,84,6,OR,66
+Evansville,126,95,7,IN,137
+Fairbanks,163,70,85,AK,47
+Fairfield,54,64,0,CA,248
+Fayetteville,116,80,2,AR,166
+Fayetteville,110,105,0,NC,150
+Flagstaff,48,58,19,AZ,240
+Flint,137,74,60,MI,94
+Florence,107,95,0,SC,162
+Fort Collins,52,55,58,CO,200
+Fort Lauderdale,174,168,0,FL,24
+Fort Myers,82,147,0,FL,137
+Fort Smith,121,72,2,AR,170
+Fort Walton Beach,138,108,0,FL,120
+Fort Wayne,224,73,42,IN,26
+Fort Worth,132,60,0,TX,173
+Franklin,182,113,2,TN,68
+Gainesville,110,116,0,FL,139
+Grand Junction,65,42,19,CO,239
+Grand Rapids,216,70,52,MI,28
+Grants Pass,94,92,12,OR,167
+Great Falls,92,57,67,MT,149
+Greeley,57,49,36,CO,224
+Green Bay,126,75,59,WI,106
+Greensboro,234,80,5,NC,47
+Greenville,81,135,3,NC,146
+Greenville,123,91,3,SC,148
+Gulfport,117,103,0,MS,146
+Hagerstown,156,82,24,MD,103
+Hammonton,123,106,14,NJ,122
+Hanford,66,33,0,CA,266
+Hanover,148,88,20,PA,109
+Harlingen,164,57,0,TX,144
+Harrisburg,176,74,22,PA,93
+Harrisonburg,126,120,13,VA,108
+Hartford,159,67,29,CT,110
+Hattiesburg,110,108,2,MS,146
+Henderson,101,36,0,NV,228
+Hickory,134,79,1,NC,150
+High Point,222,84,6,NC,54
+Hillsboro,196,51,4,OR,114
+Holland,136,74,50,MI,105
+Honolulu,211,152,0,HI,3
+Houghton,107,63,109,MI,87
+Houma,152,133,1,LA,80
+Houston,190,93,1,TX,82
+Idaho Falls,117,36,66,ID,146
+Indiana,131,112,55,PA,67
+Iowa City,132,64,30,IA,138
+Ithaca,134,98,70,NY,64
+Jackson,122,99,1,MS,143
+Jackson,112,93,6,TN,154
+Jacksonville,186,130,0,FL,50
+Janesville,186,81,44,WI,54
+Jasper,120,98,11,IN,137
+Jefferson City,130,66,16,MO,154
+Jersey City,44,217,25,NJ,79
+Joplin,108,78,10,MO,169
+Juneau,144,100,98,AK,24
+Kalamazoo,140,68,58,MI,100
+Kennewick,106,54,17,WA,188
+Killeen,149,66,0,TX,151
+Kingman,24,36,0,AZ,305
+Kingsport,222,92,16,TN,36
+Kissimmee,113,141,0,FL,112
+Knoxville,195,112,10,TN,48
+Kokomo,124,99,36,IN,106
+La Porte,110,100,53,IN,102
+Lafayette,132,74,29,IN,131
+Lafayette,138,104,0,LA,122
+Lake Charles,130,102,0,LA,133
+Lake Havasu City,22,29,0,AZ,315
+Lakeland,91,162,0,FL,112
+Lancaster,148,86,23,PA,108
+Lansing,136,70,59,MI,99
+Laredo,162,38,0,TX,166
+Las Cruces,27,62,2,NM,275
+Las Vegas,40,27,0,NV,298
+Lawton,100,64,1,OK,201
+Lebanon,174,94,25,PA,72
+Lenoir,103,129,4,NC,129
+Lewiston,104,52,64,ID,145
+Lewiston,129,78,54,ME,104
+Lexington,111,102,14,KY,139
+Lima,134,83,44,OH,105
+Lincoln,94,65,28,NE,179
+Little Rock,256,52,1,AR,56
+Lodi,50,56,0,CA,259
+Long Beach,148,25,0,CA,192
+Longview,149,81,2,TX,134
+Longview,198,91,5,WA,72
+Los Alamos,78,49,51,NM,188
+Los Angeles,134,24,0,CA,207
+Lubbock,246,43,3,TX,74
+Lynchburg,119,93,8,VA,146
+Madera,56,33,0,CA,277
+Madison,200,66,54,WI,46
+Manchester,231,47,57,NH,30
+Manitowoc,144,67,52,WI,103
+Marco Island,50,163,0,FL,152
+Marshall,117,66,54,MN,128
+Massillon,206,71,48,OH,40
+Mauldin,118,98,2,SC,148
+Melbourne,102,126,0,FL,136
+Merced,51,36,0,CA,278
+Mesa,103,29,0,AZ,233
+Miami,164,176,0,FL,25
+Milford,144,78,27,CT,116
+Milwaukee,224,64,49,WI,28
+Minneapolis,178,63,42,MN,82
+Mission,171,53,0,TX,142
+Missoula,87,30,137,MT,111
+Modesto,57,36,0,CA,272
+Moline,126,68,39,IL,132
+Monroe,126,90,0,LA,148
+Morganton,109,123,4,NC,130
+Morgantown,150,95,34,WV,86
+Morristown,118,148,8,TN,92
+Mt Vernon,207,74,8,WA,76
+Murfreesboro,131,124,2,TN,109
+Muscatine,120,85,30,IA,130
+Muskegon,228,51,59,MI,27
+Muskogee,109,75,2,OK,179
+Myrtle Beach,100,118,0,SC,147
+Napa,120,49,0,CA,196
+Naples,106,112,0,FL,147
+Nashua,156,72,42,NH,96
+Nashville,228,83,5,TN,49
+New Braunfels,196,50,0,TX,119
+New Haven,178,68,23,CT,97
+New London,144,72,26,CT,124
+New Orleans,212,114,0,LA,40
+New York,35,212,28,NY,92
+Newark,214,111,26,NJ,14
+Niagara Falls,102,97,72,NY,95
+Niles,126,86,52,MI,101
+North Charleston,210,90,0,SC,64
+North Little Rock,256,52,2,AR,56
+North Myrtle Beach,92,107,0,SC,166
+North Port,82,155,0,FL,128
+Norwalk,131,92,28,CT,114
+Norwich,138,80,32,CT,116
+Oakland,244,42,0,CA,80
+Ocala,99,160,0,FL,106
+Odessa,64,40,2,TX,259
+Ogden,74,38,50,UT,202
+Oklahoma City,161,70,3,OK,130
+Olympia,186,92,5,WA,82
+Ontario,224,23,0,CA,119
+Orem,78,46,98,UT,143
+Orlando,110,136,0,FL,120
+Ormond Beach,177,139,0,FL,49
+Owensboro,140,86,3,KY,136
+Oxnard,145,26,0,CA,194
+Palm Bay,75,152,0,FL,138
+Panama City,65,154,0,FL,146
+Pascagoula,113,111,0,MS,142
+Pensacola,110,116,0,FL,139
+Peoria,119,74,35,IL,137
+Phoenix,206,29,0,AZ,130
+Pittsfield,146,67,72,MA,80
+Pocatello,93,37,84,ID,152
+Port Arthur,74,124,0,TX,166
+Portage,136,69,62,MI,98
+Porterville,46,40,0,CA,280
+Portland,201,54,58,ME,52
+Portland,212,66,6,OR,81
+Prescott,44,47,8,AZ,266
+Provo,76,46,102,UT,141
+Pueblo,57,57,28,CO,223
+Racine,142,71,38,WI,114
+Radford,138,124,14,VA,90
+Raleigh,220,100,2,NC,43
+Rapid City,72,90,79,SD,123
+Redmond,106,50,24,OR,186
+Reno,190,34,33,NV,107
+Richland,2,77,18,WA,268
+Richmond,223,86,6,VA,51
+Riverside,124,20,0,CA,221
+Roanoke,202,76,9,VA,78
+Rochester,69,104,50,MN,142
+Rochester,221,61,73,NY,10
+Rock Island,123,72,38,IL,132
+Rockford,235,51,42,IL,37
+Rocky Mount,116,103,0,NC,147
+Rogers,111,96,2,AR,156
+Rome,132,69,91,NY,73
+Roseville,76,50,0,CA,240
+Round Rock,162,71,0,TX,132
+Rutland,129,76,95,VT,66
+Sacramento,61,40,0,CA,264
+Salem,161,80,6,OR,118
+Salinas,172,38,0,CA,155
+Salisbury,136,92,4,MD,134
+Salt Lake City,198,43,61,UT,64
+San Antonio,202,59,0,TX,104
+San Bernardino,132,18,13,CA,203
+San Diego,284,34,0,CA,47
+San Francisco,236,49,0,CA,80
+San Jose,213,50,0,CA,103
+San Luis Obispo,151,25,0,CA,190
+Sanford,91,136,0,FL,138
+Santa Barbara,134,31,0,CA,201
+Santa Clara,218,49,0,CA,98
+Santa Cruz,166,52,0,CA,147
+Santa Rosa,153,53,0,CA,159
+Sarasota,82,121,0,FL,162
+Schenectady,234,66,50,NY,14
+Scottsbluff,73,61,46,NE,185
+Scottsdale,131,30,0,AZ,204
+Scranton,173,80,30,PA,83
+Seattle,232,54,5,WA,74
+Sebastian,86,158,0,FL,121
+Sebring,4,186,0,FL,176
+Sheboygan,136,74,50,WI,104
+Sheridan,90,52,70,WY,153
+Shreveport,124,85,0,LA,156
+Sierra Vista,62,63,1,AZ,240
+Sioux City,108,65,52,IA,140
+Sioux Falls,210,48,64,SD,44
+South Bend,134,79,46,IN,107
+South Burlington,200,60,84,VT,20
+Spartanburg,52,153,3,SC,157
+Spokane,156,56,55,WA,98
+Springfield,122,72,20,IL,152
+Springfield,202,72,33,MA,58
+Springfield,114,94,10,MO,148
+Springfield,136,112,27,OH,90
+Stamford,132,98,26,CT,109
+State College,94,150,48,PA,72
+Steubenville,151,101,38,OH,75
+Stockton,56,43,0,CA,266
+Sunnyvale,212,54,0,CA,99
+Syracuse,216,60,82,NY,8
+Tacoma,189,88,6,WA,83
+Tallahassee,219,89,0,FL,56
+Tampa,170,136,0,FL,59
+Taos,50,62,48,NM,205
+Temple,131,74,0,TX,161
+Texarkana,133,62,0,AR,170
+Thibodaux,115,169,1,LA,80
+Thousand Oaks,147,26,0,CA,192
+Titusville,46,168,0,FL,150
+Toledo,139,80,41,OH,105
+Topeka,112,62,18,KS,174
+Trenton,148,86,13,NJ,118
+Troy,236,66,50,NY,14
+Tucson,27,52,0,AZ,286
+Tulsa,179,70,4,OK,112
+Twin Falls,82,48,38,ID,196
+Tyler,141,72,1,TX,152
+Urbana,100,108,18,IL,140
+Utica,138,76,82,NY,70
+Vallejo,112,44,0,CA,210
+Vero Beach,106,130,0,FL,129
+Victoria,170,74,0,TX,120
+Vineland,132,96,16,NJ,120
+Visalia,49,42,0,CA,275
+Waco,140,56,0,TX,169
+Walla Walla,80,32,112,WA,141
+Warner Robins,126,99,0,GA,141
+Warren,154,93,21,MI,97
+Warren,222,66,64,OH,14
+Warren,122,98,78,PA,67
+Washington,264,66,13,DC,22
+Washington,112,127,2,NC,125
+Waterloo,128,69,39,IA,130
+Watertown,114,79,93,NY,80
+Watsonville,167,38,0,CA,161
+Waukesha,186,88,39,WI,52
+Wausau,141,62,64,WI,98
+Wenatchee,100,39,40,WA,186
+West Lafayette,131,72,29,IN,134
+West Palm Beach,230,120,0,FL,15
+Wichita,161,68,9,KS,127
+Wilmington,132,97,13,DE,124
+Wilmington,88,114,1,NC,162
+Winchester,144,104,19,VA,98
+Winona,104,92,61,MN,108
+Winter Haven,88,131,0,FL,147
+Worcester,128,82,37,MA,119
+Wyoming,215,70,53,MI,28
+Yakima,106,48,29,WA,182
+Yuba City,67,44,0,CA,254
+Yuma,59,13,0,AZ,294
