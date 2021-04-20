@@ -494,9 +494,8 @@ async def get_weather_conditions(city: City):
     
     return {'City': city.city, 'State': city.state, 'weather_conditions': weather_cond}
 
-##############
-# Begin my working scraper code (Andrew Rust)
 
+# Code scrapper to get jobs
 def get_user_city_job(job_input, city_input, state_input):
     splitjob = job_input.split()
     splitcity = city_input.split()
@@ -533,30 +532,3 @@ async def get_jobs(job: str, city: str, state: str):
     return {
         'scraped_jobs': list_of_jobs
         }
-#############
-# Below was an attempt to access the db.
-# Problem 1 was the csv file got cut off and I didn't realize. 
-# Problem 2 was I couldn't get the list of jobs returned from the db it threw an error.
-# Settled on the scrapper from above
-#############
-
-# @router.post("/api/available_jobs")
-# async def get_available_jobs(city: City):
-#     """Retrieve random jobs per city
-    
-#     Fetch data from DB
-    
-#     args:
-#         city: selected city
-        
-#     returns:
-#         Dictionary that contains the requested data, which is converted by fastAPI to a json object.
-#     """
-#     city = validate_city(city)
-#     value = await select_available_jobs(city)
-
-#     return {'random_avail_jobs': value}
-
-# End all my code (Andrew Rust)
-###############
-
