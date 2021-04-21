@@ -145,8 +145,38 @@ async def select_housing_price_averages(city):
     return value
 
 
+async def select_schooldist_info(city):
+    """Fetch school district information
+    
+    Fetch data from DB
+    
+    args:
+        city: selected city
+        
+    returns:
+        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+    """
+    schoold = Table("schooldist")
+    
+    columns = (
+        schoold['Total Number of Public Schools'].as_("total_number_of_schools"),
+        schoold['Total Students'].as_("total_students"),
+        schoold['Total Teachers'].as_("total_teachers"),
+        schoold['Student/Teacher Ratio'].as_("ratio"),
+    )
+    
+    q = (
+        Query.from_(schoold)
+        .select(*columns)
+        .where(schoold.City == city.city)
+        .where(schoold.State == city.state)
+    )
+    value = await database.fetch_one(str(q))
+
+    return value
+
 async def select_weather_historical(city):
-    """Fetch historical weather per city
+    """Fetch historical weather per city (date range 2017/01/01 - 2021/03/16)
 
     Fetch data from DB
 
@@ -186,43 +216,13 @@ async def select_weather_historical(city):
         .select(*columns)
         .where(historical.City == city.city)
         .where(historical.State == city.state)
-        # .where(historical["Date time"] >= '2020-01-01')
     )
     value = await database.fetch_all(str(q))
-
-
-async def select_schooldist_info(city):
-    """Fetch school district information
-    
-    Fetch data from DB
-    
-    args:
-        city: selected city
-        
-    returns:
-        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
-    """
-    schoold = Table("schooldist")
-    
-    columns = (
-        schoold['Total Number of Public Schools'].as_("total_number_of_schools"),
-        schoold['Total Students'].as_("total_students"),
-        schoold['Total Teachers'].as_("total_teachers"),
-        schoold['Student/Teacher Ratio'].as_("ratio"),
-    )
-    
-    q = (
-        Query.from_(schoold)
-        .select(*columns)
-        .where(schoold.City == city.city)
-        .where(schoold.State == city.state)
-    )
-    value = await database.fetch_one(str(q))
-
     return value
 
 async def select_weather_daily(city):
-    """Fetch weather forecast per city
+    """Fetch weather forecast per city. 
+       Forecasted daily temperature for the next two years (2021/03/17 - 2023/03/16)
 
     Fetch data from DB
 
@@ -253,7 +253,8 @@ async def select_weather_daily(city):
 
   
 async def select_weather_monthly(city):
-    """Fetch weather forecast per city
+    """Fetch weather forecast per city.
+       Forecasted monthly temperature for next two years (2021/03/17 - 2023/03/16)
 
     Fetch data from DB
 
@@ -285,6 +286,7 @@ async def select_weather_monthly(city):
 
 async def select_weather_conditions(city):
     """Fetch weather conditions sunny/cloudy/rainy/snowy days per city
+       Average number of days based on 4 year historical data (from 2017-01-01 to 2020-12-31)
     
     Fetch data from DB
     
