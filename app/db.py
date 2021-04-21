@@ -251,6 +251,7 @@ async def select_weather_monthly(city):
     value = await database.fetch_all(str(q))
     return value
     
+
 async def select_weather_conditions(city):
     """Fetch weather conditions sunny/cloudy/rainy/snowy days per city
     
