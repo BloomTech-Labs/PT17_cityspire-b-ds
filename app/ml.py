@@ -9,8 +9,10 @@ from pathlib import Path
 import pandas as pd
 from pypika import Query, Table, CustomFunction
 import asyncio
-from app.db import database, select, select_all, select_housing_price_averages 
+
+from app.db import database, select, select_all, select_housing_price_averages, select_schooldist_info
 from app.db import select_weather_daily, select_weather_monthly, select_weather_conditions, select_weather_historical
+
 from typing import List, Optional
 
 
@@ -436,6 +438,30 @@ async def get_monthly_forecast(city: City):
     weather_hist = await select_weather_historical(city)
     
     return {'City': city.city, 'State': city.state, 'weather_temperature': weather_hist}
+
+
+@router.post("/api/school_district_information")
+async def get_school_district_information(city: City):
+    """Retrieve school district information per city
+
+    this includes the total number of schools, the total number of students in that school district,
+    the total number of teachers in that school district, and the pupil/teacher ratio in that school district
+    
+    Fetch data from DB
+    
+    args:
+        city: selected city
+        
+    returns:
+        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+    """
+    city = validate_city(city)
+    value = await select_schooldist_info(city)
+
+    
+    return {'City': city.city, 'State': city.state, 'total_number_of_schools'
+            : value[0], 'total_students': value[1], 'total_teachers': value[2], 
+            'ratio': value[3],}
 
 
 @router.post("/api/weather_daily_forecast")

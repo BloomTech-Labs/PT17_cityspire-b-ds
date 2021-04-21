@@ -144,6 +144,7 @@ async def select_housing_price_averages(city):
     value = await database.fetch_one(str(q))
     return value
 
+
 async def select_weather_historical(city):
     """Fetch historical weather per city
 
@@ -188,6 +189,36 @@ async def select_weather_historical(city):
         # .where(historical["Date time"] >= '2020-01-01')
     )
     value = await database.fetch_all(str(q))
+
+
+async def select_schooldist_info(city):
+    """Fetch school district information
+    
+    Fetch data from DB
+    
+    args:
+        city: selected city
+        
+    returns:
+        Dictionary that contains the requested data, which is converted by fastAPI to a json object.
+    """
+    schoold = Table("schooldist")
+    
+    columns = (
+        schoold['Total Number of Public Schools'].as_("total_number_of_schools"),
+        schoold['Total Students'].as_("total_students"),
+        schoold['Total Teachers'].as_("total_teachers"),
+        schoold['Student/Teacher Ratio'].as_("ratio"),
+    )
+    
+    q = (
+        Query.from_(schoold)
+        .select(*columns)
+        .where(schoold.City == city.city)
+        .where(schoold.State == city.state)
+    )
+    value = await database.fetch_one(str(q))
+
     return value
 
 async def select_weather_daily(city):
