@@ -402,6 +402,7 @@ async def get_housing_price_averages(city: City):
     
     The averages includes single family homes, condos, one bedroom,
     two bedroom, three bedroom, four bedroom, and five and up bedroom averages.
+    (Bedroom averages are based off single family homes AND condos.)
     
     Fetch data from DB
     
