@@ -4,7 +4,7 @@ GET:
 
 POST:
   - */api/housing_price_averages*:      Retrieve housing price averages per city. 
-                                        The averages includes single family homes, condos, one bedroom, two bedroom, three bedroom, four bedroom, and five and up bedroom averages.
+                                        The averages includes single family homes, condos, one bedroom, two bedroom, three bedroom, four bedroom, and five and up bedroom averages. (Bedroom averages are based off of single family homes AND condos.)
                                         
   - */api/weather_historical*:          Retrieve daily historical weather for target city (date range 2017/01/01 - 2021/03/16)
   
