@@ -421,25 +421,6 @@ async def get_housing_price_averages(city: City):
            value[5], '5_and_up_bedroom_avg_price': value[6]}
   
 
-@router.post("/api/weather_historical")
-async def get_monthly_forecast(city: City):
-    """Retrieve daily historical weather for target city
-
-    Fetch data from DB
-
-    args:
-        city: The target city
-
-    returns:
-        Dictionary that contains the requested data, which is converted
-        by fastAPI to a json object.
-    """
-    city = validate_city(city)
-    weather_hist = await select_weather_historical(city)
-    
-    return {'City': city.city, 'State': city.state, 'weather_temperature': weather_hist}
-
-
 @router.post("/api/school_district_information")
 async def get_school_district_information(city: City):
     """Retrieve school district information per city
@@ -463,10 +444,28 @@ async def get_school_district_information(city: City):
             : value[0], 'total_students': value[1], 'total_teachers': value[2], 
             'ratio': value[3],}
 
+@router.post("/api/weather_historical")
+async def get_historical_weather(city: City):
+    """Retrieve daily historical weather for target city (date range 2017/01/01 - 2021/03/16)
+
+    Fetch data from DB
+
+    args:
+        city: The target city
+
+    returns:
+        Dictionary that contains the requested data, which is converted
+        by fastAPI to a json object.
+    """
+    city = validate_city(city)
+    weather_hist = await select_weather_historical(city)
+    
+    return {'City': city.city, 'State': city.state, 'weather_temperature': weather_hist}
 
 @router.post("/api/weather_daily_forecast")
 async def get_daily_forecast(city: City):
     """Retrieve daily weather forecast for target city
+       Forecasted daily temperature for the next two years (2021/03/17 - 2023/03/16)
 
     Fetch data from DB
 
@@ -486,6 +485,7 @@ async def get_daily_forecast(city: City):
 @router.post("/api/weather_monthly_forecast")
 async def get_monthly_forecast(city: City):
     """Retrieve monthly weather forecast for target city
+       Forecasted monthly temperature for next two years (2021/03/17 - 2023/03/16)
 
     Fetch data from DB
 
@@ -505,6 +505,7 @@ async def get_monthly_forecast(city: City):
 @router.post("/api/weather_conditions")
 async def get_weather_conditions(city: City):
     """Retrieve weather conditions sunny/cloudy/rainy/snowy days for target city
+       Average number of days based on 4 year historical data (from 2017-01-01 to 2020-12-31)
 
     Fetch data from DB
 
